@@ -38,7 +38,7 @@
 	        
 	        <div id="navbar" class="navbar-collapse collapse">
 	          <ul class="nav navbar-nav navbar-right">
-	            <li><a href="index.php">Voltar para Home</a></li>
+	            <li><a href="index.php"><h3>Voltar para o início</h3></a></li>
 	          </ul>
 	        </div><!--/.nav-collapse -->
 	      </div>

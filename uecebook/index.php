@@ -26,7 +26,37 @@
 
 	
 		<script>
-			// código javascript						
+			//Validação dos campos
+			//Verificando se o documento foi carregado
+			$(document).ready( function(){
+
+				//verificar	se os campos de usuario e senha foram devidamente preenchidos
+				$('#btn_login').click(function(){
+
+					var campo_vazio = false;
+
+					//Verificando se esse campo possui valor vazio
+					if($('#campo_usuario').val() == ''){
+						$('#campo_usuario').css({'border-color': '#A94442'});
+						campo_vazio = true;
+					} else{
+						$('#campo_usuario').css({'border-color': '#CCC'});
+					}
+
+					//Verificando se esse campo possui valor vazio
+					if($('#campo_senha').val() == ''){
+						$('#campo_senha').css({'border-color': '#A94442'});
+						campo_vazio = true;
+					} else{
+						$('#campo_senha').css({'border-color': '#CCC'});
+					}
+
+					if(campo_vazio) return false;
+				});
+
+
+			});
+									
 		</script>
 	</head>
 
@@ -47,16 +77,16 @@
 	        
 	        <div id="navbar" class="navbar-collapse collapse">
 	          <ul class="nav navbar-nav navbar-right">
-	            <li><a href="inscrevase.php" width=20%>Cadastrar-se</a></li>
-	            <li class="">
-	            	<a id="entrar" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login</a>
+	          				<!--Se o erro for igual a 1 ele atribui a class o open -->
+	            <li class="<?= $erro == 1 ? 'open' : '' ?>">
+	            	<a id="entrar" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><h3>Login</h3></a>
 					<ul class="dropdown-menu" aria-labelledby="entrar">
 						<div class="col-md-12">
 				    		<p>Você possui uma conta?</h3>
 				    		<br />
-							<form method="post" action="" id="formLogin">
+							<form method="post" action="validar_acesso.php" id="formLogin">
 								<div class="form-group">
-									<input type="text" class="form-control" id="campo_usuario" name="usuario" placeholder="Usuário" />
+									<input type="text" class="form-control"  id="campo_usuario" name="usuario" placeholder="Usuário" />
 								</div>
 								
 								<div class="form-group">
@@ -68,9 +98,17 @@
 								<br /><br />
 								
 							</form>
+
+							<?php
+								if($erro == 1){
+									echo '<font color="#FF0000">Usuario e ou senha inválido(s)</font>';
+								}
+							?>
+
 						</form>
 				  	</ul>
 	            </li>
+	            <li><a href="inscrevase.php" width=20%><h3>Cadastrar-se</h3></a></li>
 	          </ul>
 	        </div><!--/.nav-collapse -->
 	      </div>
@@ -81,14 +119,13 @@
 
 	      <!-- Main component for a primary marketing message or call to action -->
 	      <div class="jumbotron">
-	        <h1>UECEBOOK</h1>
+	        <h1 id="subtitulo">UECEBOOK</h1>
 	        <h3 id="subtitulo">Compartilhe seus conhecimentos com a Universidade !!!</h3>
 	        <p></p>
 	      </div>
 
 	      <div class="clearfix"></div>
 		</div>
-
 
 	    </div>
 	
